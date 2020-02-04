@@ -8,35 +8,32 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import formation.sopra.springBoot.model.Login;
-import formation.sopra.springBoot.model.UserRole;
+import projetSopra.onafaim.model.Compte;
+
 
 public class CustomUserDetails implements UserDetails {
 
-	private Login login;
+	private Compte compte;
 
-	public CustomUserDetails(Login login) {
-		this.login = login;
+	public CustomUserDetails(Compte compte) {
+		this.compte = compte;
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Set<SimpleGrantedAuthority> authorites = new HashSet<>();
-		Set<UserRole> roles = login.getRoles();
-		for (UserRole userRole : roles) {
-			authorites.add(new SimpleGrantedAuthority(userRole.getRole().toString()));
-		}
+		authorites.add(new SimpleGrantedAuthority(compte.getRole().toString()));
 		return authorites;
 	}
 
 	@Override
 	public String getPassword() {
-		return login.getPassword();
+		return compte.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
-		return login.getLogin();
+		return compte.getEmail();
 	}
 
 	@Override
@@ -56,7 +53,7 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		return login.isEnable();
+		return compte.isEnable();
 	}
 
 }
