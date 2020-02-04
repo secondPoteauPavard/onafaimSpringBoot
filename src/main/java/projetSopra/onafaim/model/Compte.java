@@ -35,14 +35,15 @@ public class Compte {
 	@Column(name="email", nullable=true)
 	@Email
 	private String email; 
-	@Column(name="mdp", nullable=true)
-	private String mdp; 
-	@Column(name="type",length=6)
+	@Column(name="login", length=20, nullable=true)
+	private String login;
+	@Column(name="password", nullable=true)
+	private String password; 
+	@Column(name="role")
 	@Enumerated(EnumType.STRING)
-	private TypeCompte type=TypeCompte.client; 
-	@Enumerated(EnumType.STRING)
-	@Column(name="compte_etat",length=1)
-	private Etat compteEtat=Etat.W;
+	private RoleCompte role=RoleCompte.ROLE_CLIENT; 
+	@Column(name="enable")
+	private boolean enable=false;
 	@Column(name="date_de_creation")
 	@Temporal(TemporalType.DATE)
 	private Date dateCreation;
@@ -59,12 +60,12 @@ public class Compte {
 	public Compte() {
 	}
 
-	public Compte(String nom, String prenom, String numero, String email, String mdp) {
+	public Compte(String nom, String prenom, String numero, String email, String password) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.numero = numero;
 		this.email = email;
-		this.mdp = mdp;
+		this.password = password;
 	}
 
 	public Long getId() {
@@ -107,28 +108,37 @@ public class Compte {
 		this.email = email;
 	}
 
-	public String getMdp() {
-		return mdp;
+	
+	public String getLogin() {
+		return login;
 	}
 
-	public void setMdp(String mdp) {
-		this.mdp = mdp;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
-	public TypeCompte getType() {
-		return type;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setType(TypeCompte type) {
-		this.type = type;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public Etat getCompteEtat() {
-		return compteEtat;
+	public RoleCompte getRole() {
+		return role;
 	}
 
-	public void setCompteEtat(Etat compteEtat) {
-		this.compteEtat = compteEtat;
+	public void setRole(RoleCompte role) {
+		this.role = role;
+	}
+
+	public boolean isEnable() {
+		return enable;
+	}
+
+	public void setEnable(boolean enable) {
+		this.enable = enable;
 	}
 
 	public int getVersion() {

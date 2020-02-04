@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import projetSopra.onafaim.model.Compte;
 import projetSopra.onafaim.model.Etat;
-import projetSopra.onafaim.model.TypeCompte;
+import projetSopra.onafaim.model.RoleCompte;
 import projetSopra.onafaim.model.TypeProduit;
 import projetSopra.onafaim.repositories.CompteRepository;
 import projetSopra.onafaim.repositories.DevisRepository;
@@ -101,7 +101,7 @@ public class ViennoiserieController { // Nom controller a changer
 		//------------------------------  CLIENT ------------------------------------------
 		@GetMapping("/listClient")
 		public String listClient(Model model) {
-			model.addAttribute("compte", compteRepository.findAllByType(TypeCompte.client));
+			model.addAttribute("compte", compteRepository.findAllByType(RoleCompte.client));
 			return "page/listClient";
 		}
 		
@@ -125,7 +125,7 @@ public class ViennoiserieController { // Nom controller a changer
 		
 		private String goEdit(Compte c, Model model) {
 			model.addAttribute("compte", c);
-			model.addAttribute("type", TypeCompte.values());
+			model.addAttribute("type", RoleCompte.values());
 			model.addAttribute("etat", Etat.values()); // on n'affiche pas les commandes et devis associ�s ?
 			return "page/editCompte";
 		}
