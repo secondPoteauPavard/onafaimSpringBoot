@@ -22,6 +22,7 @@ import projetSopra.onafaim.repositories.CompteRepository;
 import projetSopra.onafaim.repositories.DevisRepository;
 import projetSopra.onafaim.repositories.ProduitRepository;
 
+
 @Controller
 @RequestMapping("/page")
 public class ViennoiserieController { // Nom controller a changer
