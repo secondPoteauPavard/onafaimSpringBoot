@@ -17,6 +17,11 @@ public class InscriptionController {
 	@Autowired
 	CompteRepository compteRepository; 
 	
+	@GetMapping("/connexion")
+	public String connection() {
+		return "auth/connexion"; 
+	}
+
 	
 	@GetMapping("/inscription")
     public ModelAndView add() { 
