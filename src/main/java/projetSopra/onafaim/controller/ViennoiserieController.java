@@ -101,7 +101,7 @@ public class ViennoiserieController { // Nom controller a changer
 		//------------------------------  CLIENT ------------------------------------------
 		@GetMapping("/listClient")
 		public String listClient(Model model) {
-			model.addAttribute("compte", compteRepository.findAllByType(RoleCompte.client));
+			model.addAttribute("compte", compteRepository.findAllByType(RoleCompte.ROLE_CLIENT));
 			return "page/listClient";
 		}
 		
@@ -150,28 +150,6 @@ public class ViennoiserieController { // Nom controller a changer
 	
 	
 	
-	
-	
-	
-	
-	
-	
-//---------------------------------------------- DOUBLON AVEC CE QU'A FAIT LOVELYSE ----------------------------------------------	
-	/*
-	@GetMapping("/listViennoiserie/edit")
-	public String edit(Model model) {
-		Produit v=new Produit();
-		model.addAttribute("viennoiserie",v);
-		return "page/editViennoiserie";
-	}
-	
-	@PostMapping("/listViennoiserie/edit")
-	public String addViennoiserie(@RequestParam(name="id") Long id) {
-		Produit v=new Produit();
-		produitRepository.save(v);
-		return "redirect:/page/listViennoiserie";
-	}*/
-
 	
 	
 
