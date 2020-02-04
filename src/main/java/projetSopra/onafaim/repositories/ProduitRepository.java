@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import model.Produit;
-import model.TailleProduit;
-import model.TypeProduit;
+import projetSopra.onafaim.model.Produit;
+import projetSopra.onafaim.model.TailleProduit;
+import projetSopra.onafaim.model.TypeProduit;
 
 public interface ProduitRepository extends JpaRepository<Produit,Long> {
 	

@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import model.Commande;
-import model.Etat;
+import projetSopra.onafaim.model.Commande;
+import projetSopra.onafaim.model.Etat;
 
 
 public interface CommandeRepository extends JpaRepository<Commande, Long> {

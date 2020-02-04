@@ -4,11 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
-import model.Compte;
-import model.Etat;
-import model.TypeCompte;
+import projetSopra.onafaim.model.Compte;
+import projetSopra.onafaim.model.Etat;
+import projetSopra.onafaim.model.TypeCompte;
 
 
 public interface CompteRepository extends JpaRepository<Compte, Long> {

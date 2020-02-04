@@ -1,13 +1,11 @@
 package projetSopra.onafaim.repositories;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import model.Commande;
-import model.Devis;
-import model.Etat;
+import projetSopra.onafaim.model.Devis;
+import projetSopra.onafaim.model.Etat;
 
 public interface DevisRepository extends JpaRepository<Devis,Long> {
 

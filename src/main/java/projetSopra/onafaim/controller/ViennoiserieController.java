@@ -14,14 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import model.Compte;
-import model.Etat;
-import model.Produit;
-import model.TypeCompte;
-import model.TypeProduit;
-import repositories.CompteRepository;
-import repositories.DevisRepository;
-import repositories.ProduitRepository;
+import projetSopra.onafaim.model.Compte;
+import projetSopra.onafaim.model.Etat;
+import projetSopra.onafaim.model.TypeCompte;
+import projetSopra.onafaim.model.TypeProduit;
+import projetSopra.onafaim.repositories.CompteRepository;
+import projetSopra.onafaim.repositories.DevisRepository;
+import projetSopra.onafaim.repositories.ProduitRepository;
 
 @Controller
 @RequestMapping("/page")
