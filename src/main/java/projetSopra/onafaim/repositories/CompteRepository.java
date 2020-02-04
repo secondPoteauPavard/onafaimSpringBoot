@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import projetSopra.onafaim.model.Compte;
 import projetSopra.onafaim.model.Etat;
-import projetSopra.onafaim.model.TypeCompte;
+import projetSopra.onafaim.model.RoleCompte;
 
 
 public interface CompteRepository extends JpaRepository<Compte, Long> {
@@ -16,7 +16,7 @@ public interface CompteRepository extends JpaRepository<Compte, Long> {
 	Optional<Compte> findByEmailAndMdp(String email,String mdp);
 	
 	//@Query("from Compte c where type=:type")	
-	List<Compte> findAllByType(TypeCompte type);
+	List<Compte> findAllByType(RoleCompte type);
 	
 	//@Query("from Compte c where compteEtat=:etat")
 	List<Compte> findAllByCompteEtat(Etat etat);
