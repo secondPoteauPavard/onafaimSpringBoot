@@ -3,6 +3,7 @@ package projetSopra.onafaim.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import projetSopra.onafaim.model.Compte;
@@ -27,9 +28,8 @@ public class CompteService {
 				compteBase.setPrenom((c.getPrenom()!=null)?c.getPrenom():compteBase.getPrenom());
 				compteBase.setNumero((c.getNumero()!=null)?c.getNumero():compteBase.getNumero());
 				compteBase.setEmail((c.getEmail()!=null)?c.getEmail():compteBase.getEmail());
-				//compteBase.setMdp((c.getMdp()!=null)?c.getMdp():compteBase.getMdp());
-				//compteBase.setType((c.getType()!=null)?c.getType():compteBase.getType());
-				//compteBase.setCompteEtat((c.getCompteEtat()!=null)?c.getCompteEtat():compteBase.getCompteEtat());
+				compteBase.setPassword((c.getPassword()!=null)?c.getPassword():compteBase.getPassword());
+				compteBase.setEnable((c.isEnable()==true)?c.isEnable():compteBase.isEnable()==false);
 				compteBase.setDateCreation((c.getDateCreation()!=null)?c.getDateCreation():compteBase.getDateCreation());
 				compteBase.setVersion((c.getVersion()!=0)?c.getVersion():compteBase.getVersion());
 				
@@ -37,7 +37,7 @@ public class CompteService {
 				return true;
 			}
 		}else {
-			//cr�ation d'une compte
+			//creation d'une compte
 			boolean erreur=false;
 			if(c.getId()==null) {
 				erreur=true;
@@ -54,15 +54,12 @@ public class CompteService {
 			if(c.getEmail()==null) {
 				erreur=true;
 			}
-//			if(c.getMdp()==null) {
-//				erreur=true;
-//			}
-//			if(c.getType()==null) {
-//				erreur=true;
-//			}
-//			if(c.getCompteEtat()==null) {
-//				erreur=true;
-//			}
+			if(c.getPassword()==null) {
+				erreur=true;
+			}
+			if(c.isEnable()==true) {
+				erreur=true;
+			}
 			if(c.getDateCreation()==null) {
 				erreur=true;
 			}
@@ -77,15 +74,4 @@ public class CompteService {
 		return false;
 	}
 	
-	public boolean checkConnect(Compte c) {
-		if(c.getEmail()!=null && c.getPassword()!=null) {
-			Optional<Compte> opt= compteRepository.findByEmailAndMdp(c.getEmail(), c.getPassword());
-			if(opt.isPresent()) {
-				return true;
-			}else {
-				return false;
-			}
-		}
-		return false;
-	}
 }

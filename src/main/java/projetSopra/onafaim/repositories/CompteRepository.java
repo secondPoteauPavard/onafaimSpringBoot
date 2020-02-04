@@ -13,7 +13,9 @@ import projetSopra.onafaim.model.RoleCompte;
 public interface CompteRepository extends JpaRepository<Compte, Long> {
 
 	//@Query("from Compte c where email=:email and mdp=:mdp")
-	Optional<Compte> findByEmailAndMdp(String email,String mdp);
+	Optional<Compte> findByEmailAndPassword(String email,String password);
+	
+	Optional<Compte> findByEmail(String email);
 	
 	//@Query("from Compte c where type=:type")	
 	List<Compte> findAllByType(RoleCompte type);

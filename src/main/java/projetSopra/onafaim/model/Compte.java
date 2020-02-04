@@ -35,8 +35,6 @@ public class Compte {
 	@Column(name="email", nullable=true)
 	@Email
 	private String email; 
-	@Column(name="login", length=20, nullable=true)
-	private String login;
 	@Column(name="password", nullable=true)
 	private String password; 
 	@Column(name="role")
@@ -106,15 +104,6 @@ public class Compte {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
 	}
 
 	public String getPassword() {
