@@ -17,13 +17,13 @@ public class InscriptionController {
 	@Autowired
 	CompteRepository compteRepository; 
 	
-	@GetMapping("/connexion")
+	@GetMapping("/auth/connexion")
 	public String connection() {
 		return "auth/connexion"; 
 	}
 
 	
-	@GetMapping("/inscription")
+	@GetMapping("/auth/inscription")
     public ModelAndView add() { 
         return new ModelAndView("inscription", "compte", new Compte());
     }
