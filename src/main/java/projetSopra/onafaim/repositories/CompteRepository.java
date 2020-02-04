@@ -19,9 +19,7 @@ public interface CompteRepository extends JpaRepository<Compte, Long> {
 	
 	//@Query("from Compte c where type=:type")	
 	List<Compte> findAllByRole(RoleCompte role);
-	
-	//@Query("from Compte c where compteEtat=:etat")
-	List<Compte> findAllByCompteEtat(Etat etat);
+
 	
 }
 
