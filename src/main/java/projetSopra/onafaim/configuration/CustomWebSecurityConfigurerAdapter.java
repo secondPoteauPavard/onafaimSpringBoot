@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+
 @Configuration
 public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 
@@ -18,12 +19,18 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/auth/admin/**").hasAnyRole("ADMIN")
-		.and().formLogin().loginPage("/login")
-		.and().authorizeRequests().antMatchers("/auth/**").authenticated()
-		.and().formLogin().loginPage("/login").permitAll()
-		.and().logout().logoutSuccessUrl("/accueil")
-		.and().authorizeRequests().antMatchers("/accueil/**").permitAll();
+		http.csrf().disable(); 
+		http.authorizeRequests().antMatchers("/**").permitAll(); 
+		
+		
+		
+		//		http.authorizeRequests().antMatchers("/auth/admin/**").hasAnyRole("ADMIN")
+//		.and().formLogin().loginPage("/connexion")
+//		.and().authorizeRequests().antMatchers("/auth/**").authenticated()
+//		.and().formLogin().loginPage("/connexion").permitAll()
+//		.and().logout().logoutSuccessUrl("/accueil")
+//		.and().authorizeRequests().antMatchers("/accueil/**").permitAll();
+		
 	}
 	
 	@Override
