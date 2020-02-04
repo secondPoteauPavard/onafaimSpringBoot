@@ -35,7 +35,7 @@
 
 		<div class="col-2">
 			<!-- quand on aura géré la connexion, se baser sur index dans le OnAFaimJpaBack -->
-			<a href="${ctx}/page/inscription" class="btn btn-light">Inscription</a>
+			<a href="${ctx}/auth/inscription" class="btn btn-light">Inscription</a>
 		</div>
 	</div>
 
