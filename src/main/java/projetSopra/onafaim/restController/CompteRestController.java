@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,6 @@ import projetSopra.onafaim.model.Compte;
 import projetSopra.onafaim.repositories.CompteRepository;
 
 @RestController
-@RequestMapping("/rest/compte")
 public class CompteRestController {
 
 	@Autowired
@@ -25,7 +25,7 @@ public class CompteRestController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	@PostMapping("/inscription")
+	@PostMapping("/auth/inscription")
 	public ResponseEntity<Compte> inscription(@RequestBody @Valid Compte compte, BindingResult br){
 		if(br.hasErrors()) {
 			compte.setPassword(passwordEncoder.encode(compte.getPassword()));
@@ -34,5 +34,13 @@ public class CompteRestController {
 		}
 		return new ResponseEntity<Compte>(HttpStatus.NOT_IMPLEMENTED);
 	}
+	
+//	@PostMapping("/page/editCompte/{id}")
+//	public ResponseEntity<Compte> update(@PathVariable("id") Long id, @RequestBody @Valid Compte compte, BindingResult br){
+//		
+//	}
+	
+	
+	
 	
 }
