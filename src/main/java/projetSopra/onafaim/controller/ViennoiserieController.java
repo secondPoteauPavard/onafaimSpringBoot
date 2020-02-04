@@ -101,7 +101,7 @@ public class ViennoiserieController { // Nom controller a changer
 		//------------------------------  CLIENT ------------------------------------------
 		@GetMapping("/listClient")
 		public String listClient(Model model) {
-			model.addAttribute("compte", compteRepository.findAllByType(RoleCompte.ROLE_CLIENT));
+			model.addAttribute("compte", compteRepository.findAllByRole(RoleCompte.ROLE_CLIENT));
 			return "page/listClient";
 		}
 		
