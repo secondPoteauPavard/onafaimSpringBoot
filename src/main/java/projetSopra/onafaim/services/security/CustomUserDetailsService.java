@@ -8,19 +8,19 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import formation.sopra.springBoot.model.Login;
-import formation.sopra.springBoot.repositories.LoginRepository;
+import projetSopra.onafaim.model.Compte;
+import projetSopra.onafaim.repositories.CompteRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired
-	private LoginRepository loginRepository;
+	private CompteRepository compteRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		Optional<Login> opt = loginRepository.findByIdWithRoles(username);
+		Optional<Compte> opt = compteRepository.findbyEmail(username);
 		if (opt.isPresent()) {
 			return new CustomUserDetails(opt.get());
 		}
