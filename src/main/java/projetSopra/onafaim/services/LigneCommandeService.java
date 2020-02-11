@@ -30,7 +30,7 @@ public class LigneCommandeService {
 			}
 		}
 		else {
-			//cr�ation 
+			//creation 
 			boolean erreur=false;
 			if(lc.getId()==null) {
 				erreur=true;
