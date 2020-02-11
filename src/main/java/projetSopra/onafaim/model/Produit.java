@@ -19,6 +19,11 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import projetSopra.onafaim.model.jsonView.JsonViews;
+import projetSopra.onafaim.model.jsonView.JsonViews.Common;
+
 @Entity
 @Table(name="produit")
 @SequenceGenerator(name="seqProduit", sequenceName = "seq_produit", initialValue = 100, allocationSize = 1)
@@ -29,20 +34,25 @@ public class Produit {
 	private Long id;
 	@Column(name="libelle", nullable = false)
 	@NotEmpty(message="champ obligatoire")
+	@JsonView(JsonViews.Common.class)
 	private String libelle;
 	@Column(name="taille", nullable = false)
 	@Enumerated(EnumType.STRING)
 	@NotNull(message ="champ obligatoire")
+	@JsonView(JsonViews.Common.class)
 	private TailleProduit taille;
 	@Column(name="prix", nullable = false)
+	@JsonView(JsonViews.Common.class)
 	private double prix=0.1;
 	@Column(name="type",length=25, nullable = false)
 	@Enumerated(EnumType.STRING)
 	@NotNull(message ="champ obligatoire")
 	private TypeProduit type; 
 	@Column(name="description")
+	@JsonView(JsonViews.Common.class)
 	private String description; 
 	@Column(name="photo")
+	@JsonView(JsonViews.Common.class)
 	private String photo;
 	@OneToMany(mappedBy = "id.produit")
 	private Set<LigneCommande> ligneCommandes; 
