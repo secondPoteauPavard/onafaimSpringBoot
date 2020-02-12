@@ -124,18 +124,18 @@ public class ProduitRestController {
 		
 		
 		
-		@PostMapping({"","/"})
-		public ResponseEntity<Void> addProduit(@RequestBody Produit produit, UriComponentsBuilder uCB) {
-			Optional<Produit> opt= produitRepository.findById(produit.getId()); 
-			if(opt.isPresent()) {
-				return new ResponseEntity<> (HttpStatus.CONFLICT); 
-			}
-			produitRepository.save(produit); 
-			
-			HttpHeaders headers = new HttpHeaders();
-			headers.setLocation(uCB.path("/rest/produit/{id}").buildAndExpand(produit.getId()).toUri()); 
-			return new ResponseEntity<> (headers, HttpStatus.CREATED);
-		}	
+//		@PostMapping({"","/"})
+//		public ResponseEntity<Void> addProduit(@RequestBody Produit produit, UriComponentsBuilder uCB) {
+//			Optional<Produit> opt= produitRepository.findById(produit.getId()); 
+//			if(opt.isPresent()) {
+//				return new ResponseEntity<> (HttpStatus.CONFLICT); 
+//			}
+//			produitRepository.save(produit); 
+//			
+//			HttpHeaders headers = new HttpHeaders();
+//			headers.setLocation(uCB.path("/rest/page/{id}").buildAndExpand(produit.getId()).toUri()); 
+//			return new ResponseEntity<> (headers, HttpStatus.CREATED);
+//		}	
 	
 		
 }
