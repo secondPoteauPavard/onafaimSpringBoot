@@ -25,7 +25,7 @@ import projetSopra.onafaim.model.jsonView.JsonViews.Common;
 import projetSopra.onafaim.repositories.ProduitRepository;
 
 @RestController
-@RequestMapping("/rest/page")
+@RequestMapping("/rest/page/produit")
 @CrossOrigin(origins = {"*"})
 public class ProduitRestController {
 
@@ -34,31 +34,19 @@ public class ProduitRestController {
 	ProduitRepository produitRepository;
 	
 	
-	// ------------------------------------- VIENNOISERIE- ------------------------------
+// ------------------------------------- VIENNOISERIE- ------------------------------
 	@GetMapping("/viennoiserie")
 	@JsonView(Common.class)
 	public ResponseEntity<List<Produit>> listViennoiserie() {
 		return new ResponseEntity<List<Produit>> (produitRepository.findAllByType(TypeProduit.Viennoiserie),HttpStatus.OK);
 	}
 	
-	
-	@DeleteMapping("/viennoiserie/{id}")
-	public ResponseEntity<Void> deleteViennoiserie(@PathVariable("id") Long id) {
-		Optional<Produit> opt = produitRepository.findById(id);
-		if (opt.isPresent()) {
-			produitRepository.deleteById(id);
-			return new ResponseEntity<> (HttpStatus.NO_CONTENT);
-		}
-		return new ResponseEntity<> (HttpStatus.NOT_FOUND);
-	}
-	
-	
 	// idée : mettre tout les delete avec un meme debut de chemin (rest/page/delete/viennoiserie)
 	// pour pouvoir gérer facilement le authorisations (= tout ce qui est dans delete)
 	
 	
 	
-	//------------------------------  GATEAU ------------------------------------------
+//------------------------------  GATEAU ------------------------------------------
 	
 	@GetMapping("/gateau")
 	@JsonView(Common.class)
@@ -67,8 +55,43 @@ public class ProduitRestController {
 	}
 	
 	
-	@DeleteMapping("/gateau/{id}")
-	public ResponseEntity<Void> deleteGateau(@PathVariable("id") Long id) {
+//------------------------------  BOISSON ------------------------------------------
+	
+	@GetMapping("/boisson")
+	@JsonView(Common.class)
+	public ResponseEntity<List<Produit>> listBoisson() {
+		return new ResponseEntity<List<Produit>> (produitRepository.findAllByType(TypeProduit.Boisson),HttpStatus.OK);
+	}
+		
+		
+//------------------------------  SANDWICH ------------------------------------------
+		
+	@GetMapping("/sandwich")
+	@JsonView(Common.class)
+	public ResponseEntity<List<Produit>> listSandwich() {
+		return new ResponseEntity<List<Produit>> (produitRepository.findAllByType(TypeProduit.Sandwich),HttpStatus.OK);
+	}
+	
+	
+//-------------------------------------------------------------------------------------------------------------------
+	
+	@PostMapping({"","/"})
+	public ResponseEntity<Void> saveProduit(@RequestBody Produit produit, UriComponentsBuilder uCB) {
+		Optional<Produit> opt= produitRepository.findById(produit.getId());
+		if(opt.isPresent()) {
+			return new ResponseEntity<> (HttpStatus.CONFLICT); 
+		}
+		produitRepository.save(produit); 
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.setLocation(uCB.path("/rest/page/produit/{libelle}").buildAndExpand(produit.getLibelle()).toUri());
+		return new ResponseEntity<> (headers, HttpStatus.CREATED);
+	}	
+	
+	
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
 		Optional<Produit> opt = produitRepository.findById(id);
 		if (opt.isPresent()) {
 			produitRepository.deleteById(id);
@@ -78,64 +101,7 @@ public class ProduitRestController {
 	}
 	
 	
-	//------------------------------  BOISSON ------------------------------------------
-	
-		@GetMapping("/boisson")
-		@JsonView(Common.class)
-		public ResponseEntity<List<Produit>> listBoisson() {
-			return new ResponseEntity<List<Produit>> (produitRepository.findAllByType(TypeProduit.Boissons),HttpStatus.OK);
-		}
-		
-		
-		@DeleteMapping("/boisson/{id}")
-		public ResponseEntity<Void> deleteBoisson(@PathVariable("id") Long id) {
-			Optional<Produit> opt = produitRepository.findById(id);
-			if (opt.isPresent()) {
-				produitRepository.deleteById(id);
-				return new ResponseEntity<> (HttpStatus.NO_CONTENT);
-			}
-			return new ResponseEntity<> (HttpStatus.NOT_FOUND);
-		}
-		
-		
-		
-	//------------------------------  SANDWICH ------------------------------------------
-		
-		@GetMapping("/sandwich")
-		@JsonView(Common.class)
-		public ResponseEntity<List<Produit>> listSandwich() {
-			return new ResponseEntity<List<Produit>> (produitRepository.findAllByType(TypeProduit.Sandwich),HttpStatus.OK);
-		}
-		
-		
-		@DeleteMapping("/sandwich/{id}")
-		public ResponseEntity<Void> deleteSandwich(@PathVariable("id") Long id) {
-			Optional<Produit> opt = produitRepository.findById(id);
-			if (opt.isPresent()) {
-				produitRepository.deleteById(id);
-				return new ResponseEntity<> (HttpStatus.NO_CONTENT);
-			}
-			return new ResponseEntity<> (HttpStatus.NOT_FOUND);
-		}
-		
-		
-	
-		
-		
-		
-		
-//		@PostMapping({"","/"})
-//		public ResponseEntity<Void> addProduit(@RequestBody Produit produit, UriComponentsBuilder uCB) {
-//			Optional<Produit> opt= produitRepository.findById(produit.getId()); 
-//			if(opt.isPresent()) {
-//				return new ResponseEntity<> (HttpStatus.CONFLICT); 
-//			}
-//			produitRepository.save(produit); 
-//			
-//			HttpHeaders headers = new HttpHeaders();
-//			headers.setLocation(uCB.path("/rest/page/{id}").buildAndExpand(produit.getId()).toUri()); 
-//			return new ResponseEntity<> (headers, HttpStatus.CREATED);
-//		}	
+
 	
 		
 }
