@@ -22,6 +22,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import projetSopra.onafaim.model.jsonView.JsonViews;
+import projetSopra.onafaim.model.jsonView.JsonViews.Common;
+
 
 @Entity
 @Table(name="produit")
