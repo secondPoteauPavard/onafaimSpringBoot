@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,7 @@ import projetSopra.onafaim.repositories.CompteRepository;
 
 @RestController
 @RequestMapping("/rest")
+@CrossOrigin("*")
 public class CompteRestController {
 
 	@Autowired
@@ -33,11 +35,12 @@ public class CompteRestController {
 	@PostMapping("/auth/inscription")
 	public ResponseEntity<Compte> inscription(@RequestBody @Valid Compte compte, BindingResult br){
 		if(br.hasErrors()) {
-			compte.setPassword(passwordEncoder.encode(compte.getPassword()));    // pour encoder le mdp
-			compteRepository.save(compte);
-			return new ResponseEntity<Compte>(compte, HttpStatus.CREATED);
-		}
-		return new ResponseEntity<Compte>(HttpStatus.NOT_IMPLEMENTED);
+			System.out.println(compte.getId() + compte.getPassword() + compte.getRole());
+			return new ResponseEntity<Compte>(HttpStatus.NOT_IMPLEMENTED);
+		}	
+		compte.setPassword(passwordEncoder.encode(compte.getPassword()));    // pour encoder le mdp, deplacer dans le repository
+		compteRepository.save(compte);
+		return new ResponseEntity<Compte>(compte, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/page/editCompte/{id}")
