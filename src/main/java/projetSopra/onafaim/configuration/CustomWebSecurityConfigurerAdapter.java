@@ -21,15 +21,15 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable(); 
-		http.authorizeRequests().antMatchers("/**").permitAll(); 
+//		http.csrf().disable(); 
+//		http.authorizeRequests().antMatchers("/**").permitAll(); 
 		
 //		http.authorizeRequests().antMatchers("/auth/connexion/**").hasAnyRole("ADMIN")
 //		.and().formLogin().loginPage("/auth/connexion")
-//		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-//		.antMatchers(HttpMethod.OPTIONS).anonymous();
-//		http.csrf().disable();
-//		http.authorizeRequests().anyRequest().authenticated().and().httpBasic();
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
+		.antMatchers(HttpMethod.OPTIONS).anonymous();
+		http.csrf().disable();
+		http.authorizeRequests().anyRequest().authenticated().and().httpBasic();
 		
 		
 		//		http.authorizeRequests().antMatchers("/auth/admin/**").hasAnyRole("ADMIN")
