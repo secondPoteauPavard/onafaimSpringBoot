@@ -71,7 +71,7 @@ public class ViennoiserieController { // Nom controller a changer
 		//------------------------------  BOISSON ------------------------------------------
 		@GetMapping("/listBoisson")
 		public String listBoisson(Model model) {
-			model.addAttribute("produit", produitRepository.findAllByType(TypeProduit.Boissons));
+			model.addAttribute("produit", produitRepository.findAllByType(TypeProduit.Boisson));
 			return "page/listBoisson";
 		}
 		
