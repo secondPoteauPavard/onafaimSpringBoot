@@ -33,7 +33,7 @@ public class CompteRestController {
 	@PostMapping("/auth/inscription")
 	public ResponseEntity<Compte> inscription(@RequestBody @Valid Compte compte, BindingResult br){
 		if(br.hasErrors()) {
-			compte.setPassword(passwordEncoder.encode(compte.getPassword()));
+			compte.setPassword(passwordEncoder.encode(compte.getPassword()));    // pour encoder le mdp
 			compteRepository.save(compte);
 			return new ResponseEntity<Compte>(compte, HttpStatus.CREATED);
 		}
