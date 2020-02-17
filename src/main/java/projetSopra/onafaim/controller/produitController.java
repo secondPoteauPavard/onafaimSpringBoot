@@ -41,7 +41,7 @@ public class produitController {
 				produitRepository.save(produit);
 				return "redirect:/page/listViennoiserie"; 
 			}
-			else if(produit.getType()==TypeProduit.Boissons) {
+			else if(produit.getType()==TypeProduit.Boisson) {
 				produitRepository.save(produit);
 				return "redirect:/page/listBoisson";
 			}
@@ -63,7 +63,7 @@ public class produitController {
 		else if(p.getType()==TypeProduit.Viennoiserie) {
 			model.addAttribute("chemin", "/page/listViennoiserie");
 		}
-		else if(p.getType()==TypeProduit.Boissons) {
+		else if(p.getType()==TypeProduit.Boisson) {
 			model.addAttribute("chemin", "/page/listBoisson");
 		}
 		else if(p.getType()==TypeProduit.Gateau) {
