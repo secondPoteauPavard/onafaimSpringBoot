@@ -8,16 +8,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import projetSopra.onafaim.model.jsonView.JsonViews;
+
 
 @Embeddable
 public class LigneCommandePK implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="commande_id", foreignKey = @ForeignKey(name="commande_produit_commande_id_fk"))
+	@JsonView(JsonViews.idCommande.class)
 	private Commande commande; 
 	
 	@ManyToOne
 	@JoinColumn(name="produit_id", foreignKey = @ForeignKey(name="commande_produit_produit_id_fk"))
+	@JsonView(JsonViews.Common.class)
 	private Produit produit;
 
 	public LigneCommandePK() {

@@ -7,6 +7,10 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import projetSopra.onafaim.model.jsonView.JsonViews;
+
 @Entity
 @Table(name="ligne_commande")
 
@@ -14,9 +18,11 @@ public class LigneCommande {
 	
 	@Size(min=0, max=100)
 	@Column(name="quantity", length=5)
+	@JsonView(JsonViews.Common.class)
 	private int qte;
 	
 	@EmbeddedId
+	@JsonView(JsonViews.Common.class)
 	private LigneCommandePK id; 
 	
 	@Version

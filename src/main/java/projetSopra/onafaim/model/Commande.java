@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +20,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
+import projetSopra.onafaim.model.jsonView.JsonViews;
 
 
 @Entity
@@ -40,7 +45,8 @@ public class Commande {
 	@ManyToOne
 	@JoinColumn(name="compte_id", foreignKey = @ForeignKey(name="commande_compte_fk"))
 	private Compte compte;
-	@OneToMany (mappedBy= "id.commande") //PAS UNE ERREUR
+	@OneToMany (mappedBy= "id.commande") 
+	@JsonView(JsonViews.Panier.class)
 	private Set<LigneCommande> panier;
 	@Version
 	private int version;
