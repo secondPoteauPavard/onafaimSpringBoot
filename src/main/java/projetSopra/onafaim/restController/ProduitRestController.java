@@ -33,6 +33,11 @@ public class ProduitRestController {
 	@Autowired
 	ProduitRepository produitRepository;
 	
+	@GetMapping({"","/"})
+	@JsonView(Common.class)
+	public ResponseEntity<List<Produit>> list(){
+		return new ResponseEntity<List<Produit>> (produitRepository.findAll(), HttpStatus.OK);
+	}
 	
 // ------------------------------------- VIENNOISERIE- ------------------------------
 	@GetMapping("/viennoiserie")
