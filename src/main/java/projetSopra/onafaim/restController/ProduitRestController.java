@@ -101,6 +101,16 @@ public class ProduitRestController {
 	}
 	
 	
+	@GetMapping("/{id}")
+	@JsonView(Common.class)
+	public ResponseEntity<Produit> findById(@PathVariable("id") Long id) {
+		Optional<Produit> opt = produitRepository.findById(id);
+		if (opt.isPresent()) {
+			return new ResponseEntity<Produit> (opt.get(), HttpStatus.OK);
+		}
+		return new ResponseEntity<> (HttpStatus.NOT_FOUND);
+	}
+	
 
 	
 		
