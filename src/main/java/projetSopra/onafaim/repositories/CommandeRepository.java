@@ -20,5 +20,7 @@ public interface CommandeRepository extends JpaRepository<Commande, Long> {
 	
 	@Query("from Commande c left join fetch c.panier where c.id=:id")
 	Optional<Commande> findByIdWithPanier(Long id);
+	
+	
 }
 
