@@ -38,6 +38,7 @@ public class CompteRestController {
 			System.out.println(compte.getId() + compte.getPassword() + compte.getRole());
 			return new ResponseEntity<Compte>(HttpStatus.NOT_IMPLEMENTED);
 		}	
+		System.out.println(passwordEncoder.encode(compte.getPassword()));
 		compte.setPassword(passwordEncoder.encode(compte.getPassword()));    // pour encoder le mdp, deplacer dans le repository
 		compteRepository.save(compte);
 		return new ResponseEntity<Compte>(compte, HttpStatus.CREATED);

@@ -29,6 +29,7 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
 				.antMatchers(HttpMethod.OPTIONS).anonymous();
 		http.csrf().disable();
+		http.authorizeRequests().antMatchers("/rest/auth/inscription").permitAll();
 		http.authorizeRequests().anyRequest().authenticated().and().httpBasic();
 
 		// http.authorizeRequests().antMatchers("/auth/admin/**").hasAnyRole("ADMIN")
@@ -50,6 +51,7 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
+
 		return new BCryptPasswordEncoder();
 	}
 }
