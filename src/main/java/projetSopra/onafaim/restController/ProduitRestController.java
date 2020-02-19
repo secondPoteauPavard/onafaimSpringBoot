@@ -3,15 +3,19 @@ package projetSopra.onafaim.restController;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -80,18 +84,34 @@ public class ProduitRestController {
 	
 //-------------------------------------------------------------------------------------------------------------------
 	
-	@PostMapping({"","/"})
-	public ResponseEntity<Void> saveProduit(@RequestBody Produit produit, UriComponentsBuilder uCB) {
-		Optional<Produit> opt= produitRepository.findById(produit.getId());
+
+	@PutMapping("/editProduit/{id}")
+	public ResponseEntity<Void> updateProduit(@PathVariable("id") Long id, @RequestBody Produit p){
+		Optional<Produit> opt= produitRepository.findById(id); 
 		if(opt.isPresent()) {
-			return new ResponseEntity<> (HttpStatus.CONFLICT); 
+			produitRepository.save(p);
+			return new ResponseEntity<> (HttpStatus.OK);
 		}
-		produitRepository.save(produit); 
-		
-		HttpHeaders headers = new HttpHeaders();
-		headers.setLocation(uCB.path("/rest/page/produit/{libelle}").buildAndExpand(produit.getLibelle()).toUri());
-		return new ResponseEntity<> (headers, HttpStatus.CREATED);
+		return new ResponseEntity<> (HttpStatus.NOT_FOUND);
+	}
+	
+	
+	@PostMapping({"","/"})
+	public ResponseEntity<Produit> saveProduit(@RequestBody Produit p, BindingResult br) {
+		if(br.hasErrors()) {
+			return new ResponseEntity<> (HttpStatus.NOT_FOUND);
+		}
+		produitRepository.save(p); 
+		return new ResponseEntity<> (HttpStatus.CREATED);
 	}	
+	
+	
+	
+	@PostMapping("/editProduit")
+	public ResponseEntity<Void > insert(@RequestBody Produit p){
+		produitRepository.save(p);
+		return new ResponseEntity<Void> (HttpStatus.CREATED);
+	}
 	
 	
 	
@@ -117,21 +137,5 @@ public class ProduitRestController {
 	}
 	
 
-	
 		
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
