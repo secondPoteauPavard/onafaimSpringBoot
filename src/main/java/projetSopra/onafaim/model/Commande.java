@@ -33,22 +33,28 @@ public class Commande {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="seqCommande")
+	@JsonView(JsonViews.Common.class)
 	private Long id; 
 	@Column(name="eval",length=255)
+	@JsonView(JsonViews.Common.class)
 	private String eval; 
 	@Enumerated(EnumType.STRING)
 	@Column(name="etat",length=1)
+	@JsonView(JsonViews.Common.class)
 	private Etat etat=Etat.W; // "en_attente" par d�faut
 	@Temporal(TemporalType.DATE)
 	@Column(name="dateCommande")
+	@JsonView(JsonViews.Common.class)
 	private Date date;
 	@ManyToOne
 	@JoinColumn(name="compte_id", foreignKey = @ForeignKey(name="commande_compte_fk"))
+	@JsonView(JsonViews.CommandeWithCompteAndPanier.class)
 	private Compte compte;
 	@OneToMany (mappedBy= "id.commande") 
-	@JsonView(JsonViews.Panier.class)
+	@JsonView(JsonViews.CommandeWithPanier.class)
 	private Set<LigneCommande> panier;
 	@Version
+	@JsonView(JsonViews.Common.class)
 	private int version;
 
 	

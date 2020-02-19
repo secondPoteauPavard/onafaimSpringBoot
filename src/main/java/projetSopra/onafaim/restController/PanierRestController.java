@@ -35,18 +35,30 @@ public class PanierRestController {
 	@Autowired
 	private LigneCommandeRepository lcRepository;
 	
-	@PostMapping("/panier/save")
-	public ResponseEntity<Void> savePanier(@RequestBody Commande commande, @RequestBody Set<LigneCommande> ligneCommandes) {
-		Optional<Commande> opt= commandeRepository.findById(commande.getId()); // RESTE A FAIRE : vérifier les conflits pour ligneCommandes
-		if(opt.isPresent()) {
-			return new ResponseEntity<> (HttpStatus.CONFLICT); 
-		}
+	@PostMapping("/commande/save")
+	public ResponseEntity<Void> savePanier(@RequestBody Commande commande) {
 		commandeRepository.save(commande); 
-		for (LigneCommande lc : ligneCommandes) { 
+		for (LigneCommande lc : commande.getPanier()) {
 			lcRepository.save(lc);
 		}
-		HttpHeaders headers = new HttpHeaders();
-		return new ResponseEntity<> (headers, HttpStatus.CREATED);
+		return new ResponseEntity<> (HttpStatus.CREATED);
+	}
+	
+	@PostMapping("/ligneCommande/save")
+	public ResponseEntity<Void> saveLigneCommande(@RequestBody LigneCommande ligneCommande) {
+		lcRepository.save(ligneCommande); 
+		return new ResponseEntity<> (HttpStatus.CREATED);
+	}
+	
+	
+	@GetMapping("/commande/{id}")
+	@JsonView(JsonViews.CommandeWithCompteAndPanier.class)
+	public ResponseEntity<Commande> panier(@PathVariable ("id") Long id){
+		Optional<Commande> opt=commandeRepository.findByIdWithPanier(id);
+		if(opt.isPresent()) {
+			return new ResponseEntity<Commande>(opt.get(), HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
 }
