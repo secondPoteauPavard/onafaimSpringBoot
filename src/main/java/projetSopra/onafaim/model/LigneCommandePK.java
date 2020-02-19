@@ -18,12 +18,12 @@ public class LigneCommandePK implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="commande_id", foreignKey = @ForeignKey(name="commande_produit_commande_id_fk"))
-	@JsonView(JsonViews.idCommande.class)
+	@JsonView(JsonViews.LigneCommandeWithCommande.class)
 	private Commande commande; 
 	
 	@ManyToOne
 	@JoinColumn(name="produit_id", foreignKey = @ForeignKey(name="commande_produit_produit_id_fk"))
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.LigneCommandeWithCommandeAndProduit.class)
 	private Produit produit;
 
 	public LigneCommandePK() {

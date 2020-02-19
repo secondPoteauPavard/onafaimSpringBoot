@@ -16,7 +16,6 @@ import projetSopra.onafaim.model.jsonView.JsonViews;
 
 public class LigneCommande {
 	
-	@Size(min=0, max=100)
 	@Column(name="quantity", length=5)
 	@JsonView(JsonViews.Common.class)
 	private int qte;
@@ -26,6 +25,7 @@ public class LigneCommande {
 	private LigneCommandePK id; 
 	
 	@Version
+	@JsonView(JsonViews.Common.class)
 	private int version;
 
 	public LigneCommande() {

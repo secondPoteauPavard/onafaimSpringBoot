@@ -21,6 +21,9 @@ public class JsonViews {
 		
 	}
 	
+	public static class LigneCommandeWithCommande extends Common{}
+	public static class LigneCommandeWithCommandeAndProduit extends LigneCommandeWithCommande{}
+	
 	
 	
 }

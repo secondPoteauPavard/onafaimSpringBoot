@@ -14,6 +14,12 @@ public class CommandeService {
 	@Autowired
 	private CommandeRepository commandeRepository;
 	
+	
+	public boolean creationCommande(Commande c) {
+		commandeRepository.save(c);
+		return true;
+	}
+	
 	public boolean save(Commande c) { 
 		Commande commandeBase=null;
 		
