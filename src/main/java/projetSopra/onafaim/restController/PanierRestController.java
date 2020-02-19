@@ -35,31 +35,31 @@ public class PanierRestController {
 	@Autowired
 	private LigneCommandeRepository lcRepository;
 	
-	@PostMapping("/commande/save")
-	public ResponseEntity<Void> savePanier(@RequestBody Commande commande) {
-		commandeRepository.save(commande); 
-		for (LigneCommande lc : commande.getPanier()) {
-			lcRepository.save(lc);
-		}
-		return new ResponseEntity<> (HttpStatus.CREATED);
-	}
-	
-	@PostMapping("/ligneCommande/save")
-	public ResponseEntity<Void> saveLigneCommande(@RequestBody LigneCommande ligneCommande) {
-		lcRepository.save(ligneCommande); 
-		return new ResponseEntity<> (HttpStatus.CREATED);
-	}
-	
-	
-	@GetMapping("/commande/{id}")
-	@JsonView(JsonViews.CommandeWithCompteAndPanier.class)
-	public ResponseEntity<Commande> panier(@PathVariable ("id") Long id){
-		Optional<Commande> opt=commandeRepository.findByIdWithPanier(id);
-		if(opt.isPresent()) {
-			return new ResponseEntity<Commande>(opt.get(), HttpStatus.OK);
-		}
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	}
+//	@PostMapping("/commande/save")
+//	public ResponseEntity<Void> savePanier(@RequestBody Commande commande) {
+//		commandeRepository.save(commande); 
+//		for (LigneCommande lc : commande.getPanier()) {
+//			lcRepository.save(lc);
+//		}
+//		return new ResponseEntity<> (HttpStatus.CREATED);
+//	}
+//	
+//	@PostMapping("/ligneCommande/save")
+//	public ResponseEntity<Void> saveLigneCommande(@RequestBody LigneCommande ligneCommande) {
+//		lcRepository.save(ligneCommande); 
+//		return new ResponseEntity<> (HttpStatus.CREATED);
+//	}
+//	
+//	
+//	@GetMapping("/commande/{id}")
+//	@JsonView(JsonViews.CommandeWithCompteAndPanier.class)
+//	public ResponseEntity<Commande> panier(@PathVariable ("id") Long id){
+//		Optional<Commande> opt=commandeRepository.findByIdWithPanier(id);
+//		if(opt.isPresent()) {
+//			return new ResponseEntity<Commande>(opt.get(), HttpStatus.OK);
+//		}
+//		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//	}
 	
 }
 
