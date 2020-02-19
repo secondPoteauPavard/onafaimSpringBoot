@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import projetSopra.onafaim.model.Compte;
 import projetSopra.onafaim.repositories.CompteRepository;
 
-@Service
+//@Service
 public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired

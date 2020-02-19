@@ -41,10 +41,10 @@ public class Compte {
 	@Enumerated(EnumType.STRING)
 	private RoleCompte role=RoleCompte.ROLE_CLIENT; 
 	@Column(name="enable")
-	private boolean enable=false;
+	private boolean enable=true;
 	@Column(name="date_de_creation")
 	@Temporal(TemporalType.DATE)
-	private Date dateCreation;
+	private Date dateCreation= new Date();
 	@Version
 	private int version;
 	@OneToMany(mappedBy="compte")  
