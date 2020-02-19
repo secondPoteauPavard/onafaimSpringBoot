@@ -107,14 +107,6 @@ public class ProduitRestController {
 	
 	
 	
-	@PostMapping("/editProduit")
-	public ResponseEntity<Void > insert(@RequestBody Produit p){
-		produitRepository.save(p);
-		return new ResponseEntity<Void> (HttpStatus.CREATED);
-	}
-	
-	
-	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
 		Optional<Produit> opt = produitRepository.findById(id);
