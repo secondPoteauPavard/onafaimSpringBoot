@@ -61,6 +61,7 @@ public class Produit {
 	@JsonView(JsonViews.ProduitCommande.class)
 	private Set<LigneCommande> ligneCommandes; 
 	@Version
+	@JsonView(JsonViews.Common.class)
 	private int version;
 	
 	

@@ -23,11 +23,7 @@ import projetSopra.onafaim.repositories.CompteRepository;
 
 @RestController
 @RequestMapping("/rest")
-<<<<<<< HEAD
 @CrossOrigin("*")
-=======
-@CrossOrigin(origins = {"*"})
->>>>>>> thibaut
 public class CompteRestController {
 
 	@Autowired
