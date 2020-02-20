@@ -45,7 +45,7 @@ public class Commande {
 	@Temporal(TemporalType.DATE)
 	@Column(name="dateCommande")
 	@JsonView(JsonViews.Common.class)
-	private Date date;
+	private Date date= new Date();
 	@ManyToOne
 	@JoinColumn(name="compte_id", foreignKey = @ForeignKey(name="commande_compte_fk"))
 	@JsonView(JsonViews.CommandeWithCompteAndPanier.class)
