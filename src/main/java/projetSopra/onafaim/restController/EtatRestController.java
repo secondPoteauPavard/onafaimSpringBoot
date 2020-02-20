@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import projetSopra.onafaim.model.Etat;
+import projetSopra.onafaim.model.jsonView.JsonViews.Common;
 
 @RestController
 @RequestMapping("/rest")
@@ -16,7 +17,7 @@ import projetSopra.onafaim.model.Etat;
 public class EtatRestController {
 	
 	@GetMapping("/etatEnum")
-	@JsonView
+	@JsonView(Common.class)
 	public Etat[] getEtat() {
 		return Etat.values();
 	}
