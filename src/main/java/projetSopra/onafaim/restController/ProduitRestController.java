@@ -30,7 +30,7 @@ import projetSopra.onafaim.repositories.ProduitRepository;
 
 @RestController
 @RequestMapping("/rest/page/produit")
-@CrossOrigin(origins = {"*"})
+@CrossOrigin("*")
 public class ProduitRestController {
 
 	
