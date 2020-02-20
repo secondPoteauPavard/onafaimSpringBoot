@@ -37,7 +37,7 @@ public class Commande {
 	private Long id; 
 	@Column(name="eval",length=255)
 	@JsonView(JsonViews.Common.class)
-	private String eval; 
+	private String evaluation; 
 	@Enumerated(EnumType.STRING)
 	@Column(name="etat",length=1)
 	@JsonView(JsonViews.Common.class)
@@ -72,13 +72,13 @@ public class Commande {
 	}
 
 
-	public String getEval() {
-		return eval;
+	public String getEvaluation() {
+		return evaluation;
 	}
 
 
-	public void setEval(String eval) {
-		this.eval = eval;
+	public void setEvaluation(String eval) {
+		this.evaluation = eval;
 	}
 
 

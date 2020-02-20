@@ -29,7 +29,7 @@ public class CommandeService {
 			if(opt.isPresent()) {
 				commandeBase=opt.get();
 				commandeBase.setId((c.getId()!=null)?c.getId():commandeBase.getId());
-				commandeBase.setEval((c.getEval()!=null)?c.getEval():commandeBase.getEval());
+				commandeBase.setEvaluation((c.getEvaluation()!=null)?c.getEvaluation():commandeBase.getEvaluation());
 				commandeBase.setEtat((c.getEtat()!=null)?c.getEtat():commandeBase.getEtat());
 				commandeBase.setDate((c.getDate()!=null)?c.getDate():commandeBase.getDate());
 				commandeBase.setCompte((c.getCompte()!=null)?c.getCompte():commandeBase.getCompte());
