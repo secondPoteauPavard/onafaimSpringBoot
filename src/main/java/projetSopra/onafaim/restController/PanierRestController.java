@@ -41,8 +41,7 @@ public class PanierRestController {
 	@PostMapping("/commande/save")
 	public ResponseEntity<Commande> savePanier(@RequestBody Commande commande) {
 		Commande c = commandeRepository.save(commande); 
-		System.out.println("--------------" +c.getId());
-		return new ResponseEntity<Commande> (c,HttpStatus.CREATED);
+		return new ResponseEntity<Commande> (c, HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/ligneCommande/save")
